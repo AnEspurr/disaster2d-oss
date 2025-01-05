@@ -130,10 +130,10 @@ function scr_exetior_special()
 				audio_play_sound(snd_exetior_stompland, 0, false);
 				net_sound_emit(snd_exetior_stompland);
 				
-				var packet = cpacket_tcp(PacketType.CLIENT_ERECTOR_BALLS, false);
-				buffer_write(packet, buffer_f32, x);
-				buffer_write(packet, buffer_f32, y);
-				send_server_tcp(packet);
+				var _packet = cpacket_tcp(PacketType.CLIENT_ERECTOR_BALLS, false);
+				buffer_write(_packet, buffer_f32, x);
+				buffer_write(_packet, buffer_f32, y);
+				send_server_tcp(_packet);
 				
 				justLanded = true;
 			}

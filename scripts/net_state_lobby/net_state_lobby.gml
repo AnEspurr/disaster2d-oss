@@ -1,10 +1,10 @@
-function lobby_player_joined(plr, ng=true)
+function lobby_player_joined(_plr, ng=true)
 {		
 	var found = false;
 	
 	with(obj_lobby_icon)
 	{
-		if(master_id == plr.nid)
+		if(master_id == _plr.nid)
 		{
 			found = true;
 			break;
@@ -15,9 +15,9 @@ function lobby_player_joined(plr, ng=true)
 		return;
 	
 	var inst = instance_create_depth(32+12, 128 + 12, 0, obj_lobby_icon);
-	inst.master_id = plr.nid;
-	inst.nickname = plr.nickname;
-	inst.isReady = plr.isReady;
+	inst.master_id = _plr.nid;
+	inst.nickname = _plr.nickname;
+	inst.isReady = _plr.isReady;
 	inst.aY = 58;
 	
 	playerCnt++;
@@ -26,13 +26,13 @@ function lobby_player_joined(plr, ng=true)
 		audio_play_sound(snd_ring, 0, false);
 }
 
-function lobby_player_left(nid) 
+function lobby_player_left(_nid) 
 {
 	playerCnt--;
 	
 	with(obj_lobby_icon)
 	{
-		if(master_id != nid)
+		if(master_id != _nid)
 			continue;
 			
 		instance_create_depth(x, y, -999, obj_lobby_blood); 
@@ -41,15 +41,16 @@ function lobby_player_left(nid)
 	}
 }
 
-function lobby_add_message(sender, msg)
+function lobby_add_message(_sender, _msg)
 {
 	if(global.muteChat)
 		return;
 	
 	audio_stop_sound(snd_message);
 	audio_play_sound(snd_message, 0, false);
-	array_push(chat, "" + sender + ": " + scr_chat_filter(msg) + "~");
+	array_push(chat, "" + _sender + ": " + scr_chat_filter(_msg) + "~");
 	
+	show_debug_message("sender: " + _sender + ". message: " + _msg);
 	if(array_length(chat) >= 9)
 		array_delete(chat, 0, 1);
 }

@@ -53,7 +53,7 @@ else if(palette != 2)
 }
 else
 {
-	show_debug_message(tableIndex);
+	//show_debug_message("in menu skin message" + tableIndex);
 	if(obj_unlockables.palettes[? tableIndex].custom)
 	{
 		from = obj_unlockables.palettes[? tableIndex].from;
